@@ -1,4 +1,4 @@
-# Image Compression Toolkit
+# Image Compression Toolkit - Python
 Three ways to compress your images!
 
 ## Contributors
