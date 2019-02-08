@@ -9,7 +9,7 @@ Two ways to compress your images!
 
 ## Project Summary
 
-This Python package specializes in reducing the size of images. It contains two main functions :`crop()`, and `compress()`. The `crop()` functions reduce the size of an image by reducing the height and width of an image to the size specified by the user. The `compress()` function reduces the size of an image by reducing the number of bits used in each colour channel of the image. The package could be used by people to reduce the size of images, which could then be uploaded to social media platforms or other websites and applications.
+This Python package specializes in reducing the size of images. It contains three main functions :`crop()`, `compress()` and `image_size()`. The `crop()` function reduces the size of an image by reducing the height and width of the image to the size specified by the user. The `compress()` function reduces the file size of an image by reducing the number of bits used in each colour channel of the image. The image_size function simply calculates and returns the size in bytes of the image passed into it. The size returned is then used to check whether the `compress()` function did its job correctly or not. The package could be used by people to reduce the size of images (dimensions or file size), which could then be uploaded to social media platforms or other websites and applications.
 
 ## Functions
 
@@ -42,5 +42,4 @@ There already are packages for image processing in R and Python:
   - [The magick package in R](https://cran.r-project.org/web/packages/magick/vignettes/intro.html)
   - [sckiti-image in Python](https://scikit-image.org/)
 
-The existing packages are very comprehensive and provide many functions such as transformations, filters, file conversions and other advanced functions. Our packages focus specifically on image compression and reducing image size using Dynamic Programming and K-means Clustering.
-
+The existing packages are very comprehensive and provide many functions such as transformations, filters, file conversions and other advanced functions. Our package focuses specifically on image compression and reducing image size using K-means Clustering. This package is not a wrapper or an improvement of an existing package. It simply uses an unsupervised learning algorithm (K-means clustering) to reduce the number of bits used to represent an image.
