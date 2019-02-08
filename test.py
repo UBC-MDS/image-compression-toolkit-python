@@ -1,7 +1,7 @@
 
 import numpy as np
 import pytest
-from imageProcess import util
+from imageCompress import util
 
 class Test_crop():
 
