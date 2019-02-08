@@ -49,46 +49,54 @@ class Test_crop():
         is passed into the function.
         """
         with pytest.raises(TypeError):
-            crop(image, 9.5, 10)
+            util.crop(image, 9.5, 10)
         with pytest.raises(TypeError):
-            crop(image, 10, 9.5)
+            util.crop(image, 10, 9.5)
         with pytest.raises(TypeError):
-            crop(image, 9.5, 9.5)
+            util.crop(image, 9.5, 9.5)
         with pytest.raises(TypeError):
-            crop(image, -9.9, -4.5)
+            util.crop(image, -9.9, -4.5)
         with pytest.raises(TypeError):
-            crop(image, "10", True)
+            util.crop(image, "10", True)
         with pytest.raises(TypeError):
-            crop("image.jpg", 10, 10)
+            util.crop("image.jpg", 10, 10)
 
 class Test_image_size():
     
     def test_size_output(self):
         """
-        Function to test that image_size() returns the right size function
+        Function to test that image_size() returns the right image size
         """
-        assert image_size(image, 7) < 8 * np.prod(image.shape)/8
-        assert image_size(image, 1) < 2 * np.prod(image.shape)/8 
-        assert image_size(image, 3) < 4 * np.prod(image.shape)/8
+        assert util.image_size(image, 7) < 8 * np.prod(image.shape)/8
+        assert util.image_size(image, 1) < 2 * np.prod(image.shape)/8 
+        assert util.image_size(image, 3) < 4 * np.prod(image.shape)/8
 
     def test_size_type(self):
+        """
+        Function to test that a TypeError is raised when an invalid type is
+        passed in for image or b
+        """
         with pytest.raises(TypeError):
-            image_size("file/path/to/image.jpg/or/image.png", 8)
+            util.image_size("file/path/to/image.jpg/or/image.png", 8)
         with pytest.raises(TypeError):
-            image_size(image, 7.5)
+            util.image_size(image, 7.5)
         with pytest.raises(TypeError):
-            image_size("image.jpg", True)
+            util.image_size("image.jpg", True)
 
     def test_size_value(self):
+        """
+        Function to test that a ValueError is raised when invalid values are passed
+        in for b
+        """
         with pytest.raises(ValueError):
-            image_size(image, -1)
+            util.image_size(image, -1)
         with pytest.raises(ValueError):
-            image_size(image, 9)
+            util.image_size(image, 9)
         with pytest.raises(ValueError):
-            image_size(image, 0)
+            util.image_size(image, 0)
         with pytest.raises(ValueError):
-            image_size(image, 1000)
+            util.image_size(image, 1000)
         with pytest.raises(ValueError):
-            image_size(image, -1000)
+            util.image_size(image, -1000)
 
         
