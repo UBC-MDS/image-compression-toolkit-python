@@ -60,43 +60,87 @@ class Test_crop():
             util.crop(image, "10", True)
         with pytest.raises(TypeError):
             util.crop("image.jpg", 10, 10)
-
-class Test_image_size():
     
-    def test_size_output(self):
+    def test_crop_input_shape(self):
         """
-        Function to test that image_size() returns the right image size
+        Test that correct image has correct shape
         """
-        assert util.image_size(image, 7) < 8 * np.prod(image.shape)/8
-        assert util.image_size(image, 1) < 2 * np.prod(image.shape)/8 
-        assert util.image_size(image, 3) < 4 * np.prod(image.shape)/8
+        assert np.size(image.shape) == 3
 
-    def test_size_type(self):
+class Test_compress():
+    
+    def test_compress_shape(self):
+        """
+        Function to test that compressed image shape is the same
+        """
+        assert util.compress(image, 7).shape == image.shape
+        assert util.compress(image, 2).shape == image.shape 
+    
+    def test_compress_size(self):
+        """
+        Function to test that the size of the compressed image is correct 
+        """
+        
+        assert util.image_size(util.compress(image, 7)) < 8 * np.prod(util.compress(image, 7).shape)/8
+        assert util.image_size(util.compress(image, 1)) < 2 * np.prod(util.compress(image, 1).shape)/8 
+        assert util.image_size(util.compress(image, 3) < 4 * np.prod(util.compress(image, 3).shape)/8
+
+    def test_compress_type(self):
         """
         Function to test that a TypeError is raised when an invalid type is
         passed in for image or b
         """
         with pytest.raises(TypeError):
-            util.image_size("file/path/to/image.jpg/or/image.png", 8)
+            util.compress("file/path/to/image.jpg/or/image.png", 6)
         with pytest.raises(TypeError):
-            util.image_size(image, 7.5)
+            util.compress(image, 7.5)
         with pytest.raises(TypeError):
-            util.image_size("image.jpg", True)
+            util.compress("image.jpg", True)
 
-    def test_size_value(self):
+    def test_compress_value(self):
         """
         Function to test that a ValueError is raised when invalid values are passed
         in for b
         """
         with pytest.raises(ValueError):
-            util.image_size(image, -1)
+            util.compress(image, -1)
         with pytest.raises(ValueError):
-            util.image_size(image, 9)
+            util.compress(image, 9)
         with pytest.raises(ValueError):
-            util.image_size(image, 0)
+            util.compress(image, 0)
         with pytest.raises(ValueError):
-            util.image_size(image, 1000)
+            util.compress(image, 1000)
         with pytest.raises(ValueError):
-            util.image_size(image, -1000)
+            util.compress(image, -1000)
+
+    def test_compress_input_shape(self):
+        """
+        Test that correct image has correct shape
+        """
+        assert np.size(image.shape) == 3
+
+class Test_image_size():
+
+    def test_size_output(self):
+        """
+        Function to test that correct size is returned
+        """
+        assert util.mage_size(image) < 9 * np.prod(image.shape)/8
+
+    def test_size_type(self):
+        """
+        Function to test that a TypeError is raised when invalid type is passed in
+        as image
+        """
+
+        with pytest.raises(TypeError):
+            util.image_size("image.jpg")
+
+    def test_size_input_shape(self):
+        """
+        Test that correct image has correct shape
+        """
+        assert np.size(image.shape) == 3
+    
 
         
