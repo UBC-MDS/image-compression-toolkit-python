@@ -3,6 +3,8 @@ import numpy as np
 import pytest
 from imageCompress import util
 
+image = np.random.randint(0,255,(10,10,3)).astype("uint8")
+
 class Test_crop():
 
     def test_crop_shape(self):
@@ -124,7 +126,7 @@ class Test_image_size():
         '''
         Function to test that correct size is returned
         '''
-        assert util.mage_size(image) < 9 * np.prod(image.shape)/8
+        assert util.image_size(image) < 9 * np.prod(image.shape)/8
 
     def test_size_type(self):
         '''
