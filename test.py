@@ -5,7 +5,7 @@ from imageFunctions import util
 
 class Test_crop():
 
-    def shape_test(self):
+    def test_crop_shape(self):
         '''
         Function to test that the crop() function returns an image 
         of the correct shape
@@ -19,7 +19,7 @@ class Test_crop():
         assert util.crop(image, 1, 1).shape == (1, 1, 3)
         assert util.crop(image, image.shape[0], image.shape[1]).shape == image.shape
 
-    def value_test(self):
+    def test_crop_value(self):
         """
         Function to test that ValueErrors are raised when invalid width and
         height are entered
@@ -35,15 +35,15 @@ class Test_crop():
         with pytest.raises(ValueError):
             util.crop(image, 10, 0)
         with pytest.raises(ValueError):
-            util.crop(image, int(1e30), 10)
+            util.crop(image, image.shape[0], 10)
         with pytest.raises(ValueError):
-            util.crop(image, 10, int(1e30))
+            util.crop(image, 10, image.shape[1] + 1)
         with pytest.raises(ValueError):
             util.crop(image, int(-1e30), 10)
         with pytest.raises(ValueError):
             util.crop(image, 10, int(-1e30))
 
-    def type_test(self):
+    def test_crop_type(self):
         """
         Function to test that a TypeError is raised when the wrong type of input
         is passed into the function.
@@ -63,15 +63,32 @@ class Test_crop():
 
 class Test_image_size():
     
-    def test_size(self):
+    def test_size_output(self):
         """
-        Function to test image_size()
+        Function to test that image_size() returns the right size function
         """
         assert image_size(image, 7) < 8 * np.prod(image.shape)/8
         assert image_size(image, 1) < 2 * np.prod(image.shape)/8 
         assert image_size(image, 3) < 4 * np.prod(image.shape)/8
 
-    # TypeError should be raised when wrong type passed in
-    with pytest.raises(TypeError):
-        image_size("file/path/to/image.jpg/or/image.png", b)
-    with pytest.raises(TypeError):
+    def test_size_type(self):
+        with pytest.raises(TypeError):
+            image_size("file/path/to/image.jpg/or/image.png", 8)
+        with pytest.raises(TypeError):
+            image_size(image, 7.5)
+        with pytest.raises(TypeError):
+            image_size("image.jpg", True)
+
+    def test_size_value(self):
+        with pytest.raises(ValueError):
+            image_size(image, -1)
+        with pytest.raises(ValueError):
+            image_size(image, 9)
+        with pytest.raises(ValueError):
+            image_size(image, 0)
+        with pytest.raises(ValueError):
+            image_size(image, 1000)
+        with pytest.raises(ValueError):
+            image_size(image, -1000)
+
+        
