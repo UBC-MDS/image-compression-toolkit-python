@@ -36,7 +36,7 @@ class Test_crop():
         with pytest.raises(ValueError):
             util.crop(image, 10, 0)
         with pytest.raises(ValueError):
-            util.crop(image, image.shape[0], 10)
+            util.crop(image, image.shape[0] + 1, 10)
         with pytest.raises(ValueError):
             util.crop(image, 10, image.shape[1] + 1)
         with pytest.raises(ValueError):
