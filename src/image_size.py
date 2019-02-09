@@ -31,9 +31,13 @@ def image_size_test(image):
     """
 
     # test that size returned is not too big
-    assert image_size(image) < 9 * np.prod(image.shape)/8 
+    assert image_size(image, b) < (b+1) * np.prod(image.shape)/8 
 
     # TypeError should be raised when wrong type passed in
     with pytest.raises(TypeError):
-        image_size("file/path/to/image.jpg/or/image.png")
+        image_size("file/path/to/image.jpg/or/image.png", b)
+    with pytest.raises(TypeError):
+
+
+    # 
 
