@@ -7,5 +7,6 @@
   "test.py::Test_crop::()::test_crop_type": true,
   "test.py::Test_crop::()::test_crop_value": true,
   "test.py::Test_image_size::()::test_size_output": true,
-  "test.py::Test_image_size::()::test_size_type": true
+  "test.py::Test_image_size::()::test_size_type": true,
+  "tests/test.py": true
 }
