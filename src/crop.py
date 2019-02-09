@@ -1,8 +1,4 @@
 
-import numpy as np
-import pytest
-
-
 def crop(image, height, width):
     '''
     Function to crop images

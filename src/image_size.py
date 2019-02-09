@@ -1,6 +1,3 @@
-import numpy as np
-import pytest
-
 def image_size(image):
     """
     Function to estimate the size of an image in bytes
