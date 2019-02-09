@@ -38,6 +38,7 @@ This Python package specializes in reducing the size of images. It contains thre
   - Output:
     - size (integer, size in bytes)
 
+## Related Packages
 There already are packages for image processing in R and Python:
   - [The magick package in R](https://cran.r-project.org/web/packages/magick/vignettes/intro.html)
   - [sckiti-image in Python](https://scikit-image.org/)
