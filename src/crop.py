@@ -9,9 +9,9 @@ def crop(image, height, width):
     height, integer, the desired height of the cropped image
     width, integer, the desired width of the cropped image
     Returns:
-    cropped_image, a 3d array with dimensions height x width x 3
+    cropped_image, saves the image and returns path of the cropped image. 
     Example:
-    crop(image, 10, 15) returns an array with shape (10, 15, 3)
+    crop(image, 10, 15) saves the image and returns path of the cropped image.
     '''
     #---------------------------------------Exception Handling----------------------------------------------------#
     # Exception handling for input validation like Type error, invalid values , unrealistic desired dimension     #
@@ -21,7 +21,7 @@ def crop(image, height, width):
         myError = TypeError('Invalid Type')
     elif height<0 or width <0 or height ==0 or width ==0 or height == int(-1e30) or width==int(-1e30):
         myError = ValueError('Desired dimension should be positive')
-    elif height == image.shape[1] + 1 or width == image.shape[2] + 1:
+    elif height >= image.shape[1] + 1 or width >= image.shape[2] + 1:
         myError = ValueError('Desired dimension should be less than original dimension')             
     if myError:
         raise myError
@@ -36,17 +36,17 @@ def crop(image, height, width):
     #-------------------------------------------------------------------------------------------------------------#
     if height % 2 ==0:                                     # For even desired height
         start_row = int(height/2)                          
-        end_row   = int(image.shape[1]-height/2)          
+        end_row   = int(image.shape[0]-height/2)          
     else:                                                  # For Odd desired height
         start_row = int((height-1)/2)
-        end_row   = int((image.shape[1]-(height-1)/2)-1)  
+        end_row   = int((image.shape[0]-(height-1)/2)-1)  
         
     if width % 2 ==0:                                      # For even desired width
         start_col = int(width/2)
-        end_col   = int((image.shape[2]-width/2))               
+        end_col   = int((image.shape[1]-width/2))               
     else:                                                  # For Odd desired width
         start_col = int((width-1)/2)
-        end_col   = int((image.shape[2]-(width-1)/2)-1)
+        end_col   = int((image.shape[1]-(width-1)/2)-1)
                 
     img = image[:,start_row:end_row,start_col:end_col]     # Cropping image from all sides.
     
