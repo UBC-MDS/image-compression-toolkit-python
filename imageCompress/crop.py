@@ -1,34 +1,43 @@
 
 import numpy as np
+import os
+from skimage.io import imread, imsave
 
-def crop(image, height, width):
+def crop(img_path, H, W):
     """
     Function to crop images
     Parameters:
     ----------
-    image, a 3d array of the image (obtained using plt.imread(image))
-    height, integer, the desired height of the cropped image
-    width, integer, the desired width of the cropped image
+    img_path - File path of the image .
+    H        - Integer, the desired height of the cropped image
+    W        - Integer, the desired width of the cropped image
+    
     Returns:
-    cropped_image, saves the image and returns path of the cropped image.
+    -------
+    cropped image path and saves the image .
+    
     Example:
-    crop(image, 10, 15) saves the image and returns path of the cropped image.
-    '''
+    -------
+    crop("data/sample.png", 10, 15) 
+    saves the image and returns the path of the cropped image.
+    """
+    #----------------------------------------Initialisation-------------------------------------------------------#
+    image  = imread(img_path)   
+    height = image.shape[0]-H
+    width  = image.shape[1]-W
     #---------------------------------------Exception Handling----------------------------------------------------#
     # Exception handling for input validation like Type error, invalid values , unrealistic desired dimension     #
     #-------------------------------------------------------------------------------------------------------------#
     myError = False
-    if type(height) != int or type(width) !=int or type(image) is not np.ndarray:
+    if type(H) != int or type(W) !=int or type(image) is not np.ndarray:
         myError = TypeError('Invalid Type')
-    elif height<0 or width <0 or height ==0 or width ==0 or height == int(-1e30) or width==int(-1e30):
+    elif H<0 or W <0 or H ==0 or W ==0 or H == int(-1e30) or W==int(-1e30):
         myError = ValueError('Desired dimension should be positive')
-    elif height >= image.shape[1] + 1 or width >= image.shape[2] + 1:
+    elif H >= image.shape[0] + 1 or W >= image.shape[1] + 1:
         myError = ValueError('Desired dimension should be less than original dimension')
     if myError:
         raise myError
-    #----------------------------------------Initialisation-------------------------------------------------------#
-    height = image.shape[1]-height
-    width  = image.shape[2]-width
+
     #----------------------------------------Main Processing------------------------------------------------------#
     # Removing rows from top and bottom by checking if the desired height is even or odd. For even height         #
     # removing half number of rows of desired height from top and half number of rows of desired height from      #
@@ -49,6 +58,12 @@ def crop(image, height, width):
         start_col = int((width-1)/2)
         end_col   = int((image.shape[1]-(width-1)/2)-1)
 
-    img = image[:,start_row:end_row,start_col:end_col]     # Cropping image from all sides.
+    img = image[start_row:end_row,start_col:end_col,:]     # Cropping image from all sides.
+    #-----------------------------------------Saving Cropped Image-----------------------------------------------#
+    # Saving the image and building the path for output                                                          #
+    #------------------------------------------------------------------------------------------------------------#
+    path = os.path.dirname(os.path.abspath(img_path))
+    crop_img_path = os.path.join(path, "crop_img.png")
+    imsave(crop_img_path, img)
 
-    return(img)
+    return(crop_img_path)
