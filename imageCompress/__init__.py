@@ -1,3 +1,3 @@
-from .util import crop
-from .util import image_size
-from .util import compress
+from .compress import compress
+from .image_size import image_size
+from .crop import crop
