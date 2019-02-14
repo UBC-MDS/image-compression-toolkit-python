@@ -5,71 +5,84 @@ from imageCompress.image_size import image_size
 from imageCompress.crop import crop
 from skimage.io import imread
 
-# add the random image path here
-#img_path = "data/sample.png"
+# images for testing
+test_images = ["data/test_image_1717.png", "data/test_image_1718.png", "data/test_image_1816", "data/test_image_1819" ]
+img_path = ["data/test_image_1718"]
 
-# class Test_crop():
-#
-#     def test_crop_shape(self):
-#         '''
-#         Function to test that the crop() function returns an image
-#         of the correct shape
-#         '''
-#         # Test for correct shape
-#         assert util.crop(image, 15, 10).shape == (15, 10, 3)
-#         assert util.crop(image, 10, 5).shape == (10, 5, 3)
-#         assert util.crop(image, 6, 6).shape == (6, 6, 3)
-#         assert util.crop(image, 5, 5).shape == (5, 5, 3)
-#         assert util.crop(image, 1, 1).shape == (1, 1, 3)
-#         assert util.crop(image, image.shape[0], image.shape[1]).shape == image.shape
-#
-#     def test_crop_value(self):
-#         '''
-#         Function to test that ValueErrors are raised when invalid width and
-#         height are entered
-#         '''
-#         with pytest.raises(ValueError):
-#             util.crop(image, -1, 10)
-#         with pytest.raises(ValueError):
-#             util.crop(image, 10, -1)
-#         with pytest.raises(ValueError):
-#             util.crop(image, 0, 0)
-#         with pytest.raises(ValueError):
-#             util.crop(image, 0, 10)
-#         with pytest.raises(ValueError):
-#             util.crop(image, 10, 0)
-#         with pytest.raises(ValueError):
-#             util.crop(image, image.shape[0] + 1, 10)
-#         with pytest.raises(ValueError):
-#             util.crop(image, 10, image.shape[1] + 1)
-#         with pytest.raises(ValueError):
-#             util.crop(image, int(-1e30), 10)
-#         with pytest.raises(ValueError):
-#             util.crop(image, 10, int(-1e30))
-#
-#     def test_crop_type(self):
-#         '''
-#         Function to test that a TypeError is raised when the
-#         wrong type of input is passed into the function.
-#         '''
-#         with pytest.raises(TypeError):
-#             util.crop(image, 9.5, 10)
-#         with pytest.raises(TypeError):
-#             util.crop(image, 10, 9.5)
-#         with pytest.raises(TypeError):
-#             util.crop(image, 9.5, 9.5)
-#         with pytest.raises(TypeError):
-#             util.crop(image, -9.9, -4.5)
-#         with pytest.raises(TypeError):
-#             util.crop(image, "10", True)
-#         with pytest.raises(TypeError):
-#             util.crop("image.jpg", 10, 10)
-#
-#     def test_crop_input_shape(self):
-#         '''
-#         Test that correct image has correct shape
-#         '''
-#         assert np.size(image.shape) == 3
+class Test_crop():
+
+    def test_crop_shape(self):
+        '''
+        Function to test that the crop() function returns an image
+        of the correct shape for different input shapes
+        '''
+        for image in test_images:
+
+            cropped_image = crop(image, 15, 10)
+            assert imread(cropped_image).shape[0:2] == (15, 10)
+
+            cropped_image = crop(image, 10, 5)
+            assert imread(cropped_image).shape[0:2] == (10, 5)
+
+            cropped_image = crop(image, 6, 6)
+            assert imread(cropped_image).shape[0:2] == (6, 6)
+
+            cropped_image = crop(image, 5, 5)
+            assert imread(cropped_image).shape[0:2] == (5, 5)
+
+            cropped_image = crop(image, 1, 1)
+            assert imread(cropped_image).shape [0:2]== (1, 1)
+
+            cropped_image = crop(image, imread(image).shape[0], imread(image).shape[1])
+            assert imread(cropped_image).shape == imread(image).shape
+
+    def test_crop_value(self):
+        '''
+        Function to test that ValueErrors are raised when invalid width and
+        height are entered
+        '''
+        with pytest.raises(ValueError):
+            crop(img_path, -1, 10)
+        with pytest.raises(ValueError):
+            crop(img_path, 10, -1)
+        with pytest.raises(ValueError):
+            crop(img_path, 0, 0)
+        with pytest.raises(ValueError):
+            crop(img_path, 0, 10)
+        with pytest.raises(ValueError):
+            crop(img_path, 10, 0)
+        with pytest.raises(ValueError):
+            crop(img_path, image.shape[0] + 1, 10)
+        with pytest.raises(ValueError):
+            crop(img_path, 10, image.shape[1] + 1)
+        with pytest.raises(ValueError):
+            crop(img_path, int(-1e30), 10)
+        with pytest.raises(ValueError):
+            crop(img_path, 10, int(-1e30))
+
+    def test_crop_type(self):
+        '''
+        Function to test that a TypeError is raised when the
+        wrong type of input is passed into the function.
+        '''
+        with pytest.raises(TypeError):
+            crop(img_path, 9.5, 10)
+        with pytest.raises(TypeError):
+            crop(img_path, 10, 9.5)
+        with pytest.raises(TypeError):
+            crop(img_path, 9.5, 9.5)
+        with pytest.raises(TypeError):
+            crop(img_path, -9.9, -4.5)
+        with pytest.raises(TypeError):
+            crop(5, "10", True)
+        with pytest.raises(TypeError):
+            crop(np.random.randint(0,255,(18,19,3)).astype("uint8"), 10, 10)
+
+    def test_crop_input_shape(self):
+        '''
+        Test that input image has correct shape
+        '''
+        assert np.size(imread(img_path).shape) == 3
 
 
 class Test_compress():
@@ -80,7 +93,11 @@ class Test_compress():
         '''
         com_path = compress(img_path, 3)
         assert imread(com_path).shape == imread(img_path).shape
+
         com_path = compress(img_path, 1)
+        assert imread(com_path).shape == imread(img_path).shape
+
+        com_path = compress(img_path, 6)
         assert imread(com_path).shape == imread(img_path).shape
 
     def test_compress_type(self):
@@ -89,11 +106,11 @@ class Test_compress():
         passed in for image or b
         '''
         with pytest.raises(TypeError):
-            compress("file/path/to/image.jpg/or/image.png", 6.5)
+            compress(img_path, 6.5)
         with pytest.raises(TypeError):
             compress(imread(img_path), 2)
         with pytest.raises(TypeError):
-            compress("image.jpg", True)
+            compress(5, True)
 
     def test_compress_value(self):
         '''
@@ -113,7 +130,7 @@ class Test_compress():
 
     def test_compress_input_shape(self):
         '''
-        Test that correct image has correct shape
+        Test that input image has correct shape
         '''
         assert np.size(
             imread(img_path).shape) == 3, "The image should not have more than 3 dimensions!"
@@ -125,8 +142,15 @@ class Test_compress():
         '''
         compressed_img = compress(img_path, 3)
         assert image_size(compressed_img) < 4/8 * image_size(img_path)
+        
         compressed_img = compress(img_path, 1)
         assert image_size(compressed_img) < 2/8 * image_size(img_path)
+
+        compressed_img = compress(img_path, 6)
+        assert image_size(compressed_img) < 7/8 * image_size(img_path)
+
+        compressed_img = compress(img_path, 8)
+        assert image_size(compressed_img) == image_size(img_path)
 
 class Test_image_size():
 
@@ -152,6 +176,6 @@ class Test_image_size():
 
     def test_size_input_shape(self):
         '''
-        Test that correct image has correct shape
+        Test that input image has correct shape
         '''
         assert np.size(imread(img_path).shape) == 3
