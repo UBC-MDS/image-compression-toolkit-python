@@ -1,0 +1,10 @@
+[
+  "test.py::Test_compress::()::test_compress_shape",
+  "test.py::Test_compress::()::test_compress_type",
+  "test.py::Test_compress::()::test_compress_value",
+  "test.py::Test_compress::()::test_compress_input_shape",
+  "test.py::Test_compress::()::test_compress_size",
+  "test.py::Test_image_size::()::test_size_output",
+  "test.py::Test_image_size::()::test_size_type",
+  "test.py::Test_image_size::()::test_size_input_shape"
+]
