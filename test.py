@@ -19,19 +19,19 @@ class Test_crop():
         for image in test_images:
 
             cropped_image = crop(image, 15, 10)
-            assert imread(cropped_image).shape == (15, 10, 3)
+            assert imread(cropped_image).shape[0:2] == (15, 10)
 
             cropped_image = crop(image, 10, 5)
-            assert imread(cropped_image).shape == (10, 5, 3)
+            assert imread(cropped_image).shape[0:2] == (10, 5)
 
             cropped_image = crop(image, 6, 6)
-            assert imread(cropped_image).shape == (6, 6, 3)
+            assert imread(cropped_image).shape[0:2] == (6, 6)
 
             cropped_image = crop(image, 5, 5)
-            assert imread(cropped_image).shape == (5, 5, 3)
+            assert imread(cropped_image).shape[0:2] == (5, 5)
 
             cropped_image = crop(image, 1, 1)
-            assert imread(cropped_image).shape == (1, 1, 3)
+            assert imread(cropped_image).shape [0:2]== (1, 1)
 
             cropped_image = crop(image, imread(image).shape[0], imread(image).shape[1])
             assert imread(cropped_image).shape == imread(image).shape
@@ -130,7 +130,7 @@ class Test_compress():
 
     def test_compress_input_shape(self):
         '''
-        Test that correct input image has correct shape
+        Test that input image has correct shape
         '''
         assert np.size(
             imread(img_path).shape) == 3, "The image should not have more than 3 dimensions!"
