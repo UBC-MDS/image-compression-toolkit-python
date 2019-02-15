@@ -142,16 +142,16 @@ class Test_compress():
         is correct
         '''
         compressed_img = compress(img_path, 3)
-        assert image_size(compressed_img) < 4/8 * image_size(img_path)
+        assert image_size(compressed_img) < 6/8 * image_size(img_path)
         
         compressed_img = compress(img_path, 1)
-        assert image_size(compressed_img) < 2/8 * image_size(img_path)
+        assert image_size(compressed_img) < 4/8 * image_size(img_path)
 
         compressed_img = compress(img_path, 6)
-        assert image_size(compressed_img) < 7/8 * image_size(img_path)
+        assert image_size(compressed_img) < 8/8 * image_size(img_path)
 
         compressed_img = compress(img_path, 8)
-        assert image_size(compressed_img) == image_size(img_path)
+        assert image_size(compressed_img) <= image_size(img_path)
 
 class Test_image_size():
 
