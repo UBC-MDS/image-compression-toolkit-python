@@ -17,6 +17,8 @@ def image_size(img_path):
     """
     if type(img_path) != str:
         raise TypeError("Image path invalid, pass a correct path (string)!")
-        
+
     file_info = os.stat(img_path)
+    
+    print("The file size in bytes is: ")
     return file_info.st_size
