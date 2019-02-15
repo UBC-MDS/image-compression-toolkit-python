@@ -41,7 +41,7 @@ This Python package specializes in reducing the size of images. It contains thre
 ## Installation
 To install this package, use the following command:  
 
-`pip install git https://github.com/UBC-MDS/image-compression-toolkit-python.git`
+`pip install git+https://github.com/UBC-MDS/image-compression-toolkit-python.git`
 
 ## Usage 
 
