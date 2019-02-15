@@ -39,8 +39,12 @@ This Python package specializes in reducing the size of images. It contains thre
     - size (integer, size of the image in bytes)  
     
 ## Installation
+To install this package, use the following command:  
 
-## Usage  
+`pip install git https://github.com/UBC-MDS/image-compression-toolkit-python.git`
+
+## Usage 
+
 
 ## Related Packages
 There already are packages for image processing in R and Python:
