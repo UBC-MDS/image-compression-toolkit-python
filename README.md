@@ -41,10 +41,14 @@ This Python package specializes in reducing the size of images. It contains thre
 ## Installation
 To install this package, use the following command:  
 
-`pip install git+https://github.com/UBC-MDS/image-compression-toolkit-python.git`
+>`pip install git+https://github.com/UBC-MDS/image-compression-toolkit-python.git`
 
 ## Usage 
-
+|Task    |  In a Script (after, `import imageCompress`)   |
+|---------|---------------------|
+|Crop `image.png` to size 10 X 15  |  `imageCompress.crop("..//image.png", H = 10, W = 15)`| 
+|Compress an `image.png` to 5 bits per channel |  `imageCompress.compress("..//image.png", 5)` |
+|Get the size of `image.png`|  `imageCompress.image_size("..//image.png")`|
 
 ## Related Packages
 There already are packages for image processing in R and Python:
