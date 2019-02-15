@@ -28,7 +28,7 @@ def crop(img_path, H, W):
         raise TypeError("Image path not correct, make sure you are passing a string!")
     if type(H) != int or type(W) !=int:
         raise TypeError('Invalid Type')
-    elif H<0 or W <0 or H ==0 or W ==0 or H == int(-1e30) or W==int(-1e30):
+    elif H<0 or W <0 or H ==0 or W ==0:
         raise ValueError('Desired dimension should be positive')
     elif H >= imread(img_path).shape[0] + 1 or W >= imread(img_path).shape[1] + 1:
         raise ValueError('Desired dimension should be less than original dimension')
