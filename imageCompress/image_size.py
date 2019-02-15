@@ -19,6 +19,6 @@ def image_size(img_path):
         raise TypeError("Image path invalid, pass a correct path (string)!")
 
     file_info = os.stat(img_path)
-    
-    print("The file size in bytes is: ")
-    return file_info.st_size
+    size = file_info.st_size
+    print("The file size in bytes is:", size)
+    return size
