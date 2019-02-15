@@ -1,4 +1,8 @@
 [
+  "test.py::Test_crop::()::test_crop_shape",
+  "test.py::Test_crop::()::test_crop_value",
+  "test.py::Test_crop::()::test_crop_type",
+  "test.py::Test_crop::()::test_crop_input_shape",
   "test.py::Test_compress::()::test_compress_shape",
   "test.py::Test_compress::()::test_compress_type",
   "test.py::Test_compress::()::test_compress_value",
