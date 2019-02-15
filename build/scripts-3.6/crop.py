@@ -11,16 +11,16 @@ def crop(img_path, H, W):
     img_path - String , file path of the image .
     H        - Integer, the desired height of the cropped image
     W        - Integer, the desired width of the cropped image
-    
+
     Returns:
     -------
     cropped image path and saves the image .
-    
+
     Example:
     -------
-    crop("data/sample.png", 10, 15) 
+    crop("data/sample.png", 10, 15)
     saves the image and returns the path of the cropped image.
-    """    
+    """
     #---------------------------------------Exception Handling----------------------------------------------------#
     # Exception handling for input validation like Type error, invalid values , unrealistic desired dimension     #
     #-------------------------------------------------------------------------------------------------------------#
@@ -33,7 +33,7 @@ def crop(img_path, H, W):
     elif H >= imread(img_path).shape[0] + 1 or W >= imread(img_path).shape[1] + 1:
         raise ValueError('Desired dimension should be less than original dimension')
     #----------------------------------------Initialisation-------------------------------------------------------#
-    image  = imread(img_path)   
+    image  = imread(img_path)
     height = image.shape[0]-H
     width  = image.shape[1]-W
     #----------------------------------------Main Processing------------------------------------------------------#
@@ -64,4 +64,5 @@ def crop(img_path, H, W):
     crop_img_path = os.path.join(path, "crop_img.png")
     imsave(crop_img_path, img)
 
+    print("The cropped image is saved at the path:", crop_img_path)
     return crop_img_path
