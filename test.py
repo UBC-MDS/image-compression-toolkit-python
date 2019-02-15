@@ -83,7 +83,7 @@ class Test_crop():
         '''
         Test that input image has correct shape
         '''
-        assert np.size(imread(img_path).shape) == 3
+        assert np.size(imread(img_path).shape) == 3 or np.size(imread(img_path).shape) == 2
 
 
 class Test_compress():
@@ -133,8 +133,7 @@ class Test_compress():
         '''
         Test that input image has correct shape
         '''
-        assert np.size(
-            imread(img_path).shape) == 3, "The image should not have more than 3 dimensions!"
+        assert np.size(imread(img_path).shape) == 3 or np.size(imread(img_path).shape) == 2
 
     def test_compress_size(self):
         '''
@@ -179,4 +178,4 @@ class Test_image_size():
         '''
         Test that input image has correct shape
         '''
-        assert np.size(imread(img_path).shape) == 3
+        assert np.size(imread(img_path).shape) == 3 or np.size(imread(img_path).shape) == 2
