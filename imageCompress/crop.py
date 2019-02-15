@@ -63,6 +63,6 @@ def crop(img_path, H, W):
     path = os.path.dirname(os.path.abspath(img_path))
     crop_img_path = os.path.join(path, "crop_img.png")
     imsave(crop_img_path, img)
-    
-    print("The cropped image is saved at the path: ")
+
+    print("The cropped image is saved at the path:", crop_img_path)
     return crop_img_path
