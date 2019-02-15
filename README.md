@@ -47,7 +47,7 @@ To install this package, use the following command:
 |Task    |  In a Script (after, `import imageCompress`)   |
 |---------|---------------------|
 |Crop `image.png` to size 10 X 15  |  `imageCompress.crop("..//image.png", H = 10, W = 15)`| 
-|Compress an `image.png` to 5 bits per channel |  `imageCompress.compress("..//image.png", 5)` |
+|Compress an `image.png` to 5 bits per channel |  `imageCompress.compress("..//image.png", b = 5)` |
 |Get the size of `image.png`|  `imageCompress.image_size("..//image.png")`|
 
 ## Related Packages
