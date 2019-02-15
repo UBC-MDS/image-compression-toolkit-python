@@ -52,4 +52,5 @@ def compress(img_path, b):
     compressed_img_path = os.path.join(path, "compressed_img.png")
     imsave(compressed_img_path, img)
 
+    print("The compressed image is saved at the path:")
     return compressed_img_path
