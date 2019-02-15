@@ -52,9 +52,9 @@ class Test_crop():
         with pytest.raises(ValueError):
             crop(img_path, 10, 0)
         with pytest.raises(ValueError):
-            crop(img_path, image.shape[0] + 1, 10)
+            crop(img_path, imread(img_path).shape[0] + 1, 10)
         with pytest.raises(ValueError):
-            crop(img_path, 10, image.shape[1] + 1)
+            crop(img_path, 10, imread(img_path).shape[1] + 1)
         with pytest.raises(ValueError):
             crop(img_path, int(-1e30), 10)
         with pytest.raises(ValueError):
