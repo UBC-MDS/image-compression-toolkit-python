@@ -6,8 +6,8 @@ from imageCompress.crop import crop
 from skimage.io import imread
 
 # images for testing
-test_images = ["data/test_image_1717.png", "data/test_image_1718.png", "data/test_image_1816", "data/test_image_1819" ]
-img_path = ["data/test_image_1718"]
+test_images = ["data/test_image_1717.png", "data/test_image_1718.png", "data/test_image_1816.png", "data/test_image_1819.png" ]
+img_path = "data/test_image_1718.png"
 
 class Test_crop():
 
@@ -16,6 +16,7 @@ class Test_crop():
         Function to test that the crop() function returns an image
         of the correct shape for different input shapes
         '''
+
         for image in test_images:
 
             cropped_image = crop(image, 15, 10)
