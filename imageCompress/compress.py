@@ -2,8 +2,10 @@ import numpy as np
 import os
 from sklearn import cluster
 from skimage.io import imread, imsave
+from imageCompress.image_size import image_size
 
-def compress(img_path, b):
+
+def compression (img_path, b):
     """
     Compresses an image into a format with bits to
     represent each channel.
@@ -53,3 +55,18 @@ def compress(img_path, b):
     imsave(compressed_img_path, img)
 
     return compressed_img_path
+
+def compress(img_path, b):
+
+    if image_size(compression(img_path, 1)) > image_size(img_path):
+        os.remove(compression(img_path, 1))
+        raise Exception ("The image is already compressed")
+        
+
+    elif image_size(compression(img_path, b)) > image_size(img_path):
+        os.remove(compression(img_path, b))
+        raise Exception ("Choose a smaller b to compress the image.")
+        
+
+    else:
+        return compression(img_path, b)
