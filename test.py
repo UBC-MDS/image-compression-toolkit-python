@@ -7,7 +7,9 @@ from skimage.io import imread
 
 # images for testing
 test_images = ["data/test_image_1717.png", "data/test_image_1718.png", "data/test_image_1816.png", "data/test_image_1819.png" ]
-img_path = "data/test_image_1718.png"
+img_path = "data/test_image_1819.png"
+small_img = "data/image_1.png"
+big_img = "data/bigger_test.png"
 
 class Test_crop():
 
@@ -83,7 +85,7 @@ class Test_crop():
         '''
         Test that input image has correct shape
         '''
-        assert np.size(imread(img_path).shape) == 3 or np.size(imread(img_path).shape) == 2
+        assert np.size(imread(img_path).shape) in [2, 3]
 
 
 class Test_compress():
@@ -133,7 +135,7 @@ class Test_compress():
         '''
         Test that input image has correct shape
         '''
-        assert np.size(imread(img_path).shape) == 3 or np.size(imread(img_path).shape) == 2
+        assert np.size(imread(img_path).shape) in [2,3]
 
     def test_compress_size(self):
         '''
@@ -141,16 +143,34 @@ class Test_compress():
         is correct
         '''
         compressed_img = compress(img_path, 3)
-        assert image_size(compressed_img) < 6/8 * image_size(img_path)
+        assert image_size(compressed_img) < 7/8 * image_size(img_path)
         
         compressed_img = compress(img_path, 1)
-        assert image_size(compressed_img) < 4/8 * image_size(img_path)
+        assert image_size(compressed_img) < 5/8 * image_size(img_path)
 
         compressed_img = compress(img_path, 6)
-        assert image_size(compressed_img) < 8/8 * image_size(img_path)
+        assert image_size(compressed_img) <= 8/8 * image_size(img_path)
 
         compressed_img = compress(img_path, 8)
         assert image_size(compressed_img) <= image_size(img_path)
+
+    def test_compress_already_compressed(self):
+        '''
+        Function to test that the function raises exceptions when
+        images that cannot be compressed further are passed in
+        '''
+        with pytest.raises(Exception):
+            compress(small_img, 8)
+        with pytest.raises(Exception):
+            compress(small_img, 1)
+
+    def test_compress_smaller_b(self):
+        '''
+        Function to test that an exception gets raised when a smaller b
+        needs to be chosen in order to compress the image
+        '''
+        with pytest.raises(Exception):
+            compress(big_img, 4)
 
 class Test_image_size():
 
@@ -158,7 +178,7 @@ class Test_image_size():
         '''
         Function to test that correct size is returned
         '''
-        assert image_size(img_path) <= imread(img_path).nbytes
+        assert image_size(img_path) <= 1.1 * imread(img_path).nbytes 
 
     def test_size_type(self):
         '''
@@ -178,4 +198,4 @@ class Test_image_size():
         '''
         Test that input image has correct shape
         '''
-        assert np.size(imread(img_path).shape) == 3 or np.size(imread(img_path).shape) == 2
+        assert np.size(imread(img_path).shape) in [2, 3]
