@@ -1,5 +1,6 @@
 import numpy as np
 import pytest
+import os
 from imageCompress.compress import compress
 from imageCompress.image_size import image_size
 from imageCompress.crop import crop
@@ -10,6 +11,7 @@ test_images = ["data/test_image_1717.png", "data/test_image_1718.png", "data/tes
 img_path = "data/test_image_1819.png"
 small_img = "data/image_1.png"
 big_img = "data/bigger_test.png"
+outpath = os.path.join((os.path.dirname(os.path.abspath(img_path))), "test.png")
 
 class Test_crop():
 
@@ -21,22 +23,22 @@ class Test_crop():
 
         for image in test_images:
 
-            cropped_image = crop(image, 15, 10)
+            cropped_image = crop(image, 15, 10, outpath)
             assert imread(cropped_image).shape[0:2] == (15, 10)
 
-            cropped_image = crop(image, 10, 5)
+            cropped_image = crop(image, 10, 5, outpath)
             assert imread(cropped_image).shape[0:2] == (10, 5)
 
-            cropped_image = crop(image, 6, 6)
+            cropped_image = crop(image, 6, 6, outpath)
             assert imread(cropped_image).shape[0:2] == (6, 6)
 
-            cropped_image = crop(image, 5, 5)
+            cropped_image = crop(image, 5, 5, outpath)
             assert imread(cropped_image).shape[0:2] == (5, 5)
 
-            cropped_image = crop(image, 1, 1)
+            cropped_image = crop(image, 1, 1, outpath)
             assert imread(cropped_image).shape [0:2]== (1, 1)
 
-            cropped_image = crop(image, imread(image).shape[0], imread(image).shape[1])
+            cropped_image = crop(image, imread(image).shape[0], imread(image).shape[1], outpath)
             assert imread(cropped_image).shape == imread(image).shape
 
     def test_crop_value(self):
@@ -45,23 +47,23 @@ class Test_crop():
         height are entered
         '''
         with pytest.raises(ValueError):
-            crop(img_path, -1, 10)
+            crop(img_path, -1, 10, outpath)
         with pytest.raises(ValueError):
-            crop(img_path, 10, -1)
+            crop(img_path, 10, -1, outpath)
         with pytest.raises(ValueError):
-            crop(img_path, 0, 0)
+            crop(img_path, 0, 0, outpath)
         with pytest.raises(ValueError):
-            crop(img_path, 0, 10)
+            crop(img_path, 0, 10, outpath)
         with pytest.raises(ValueError):
-            crop(img_path, 10, 0)
+            crop(img_path, 10, 0, outpath)
         with pytest.raises(ValueError):
-            crop(img_path, imread(img_path).shape[0] + 1, 10)
+            crop(img_path, imread(img_path).shape[0] + 1, 10, outpath)
         with pytest.raises(ValueError):
-            crop(img_path, 10, imread(img_path).shape[1] + 1)
+            crop(img_path, 10, imread(img_path).shape[1] + 1, outpath)
         with pytest.raises(ValueError):
-            crop(img_path, int(-1e30), 10)
+            crop(img_path, int(-1e30), 10, outpath)
         with pytest.raises(ValueError):
-            crop(img_path, 10, int(-1e30))
+            crop(img_path, 10, int(-1e30), outpath)
 
     def test_crop_type(self):
         '''
@@ -69,17 +71,19 @@ class Test_crop():
         wrong type of input is passed into the function.
         '''
         with pytest.raises(TypeError):
-            crop(img_path, 9.5, 10)
+            crop(img_path, 9.5, 10, outpath)
         with pytest.raises(TypeError):
-            crop(img_path, 10, 9.5)
+            crop(img_path, 10, 9.5, outpath)
         with pytest.raises(TypeError):
-            crop(img_path, 9.5, 9.5)
+            crop(img_path, 9.5, 9.5, outpath)
         with pytest.raises(TypeError):
-            crop(img_path, -9.9, -4.5)
+            crop(img_path, -9.9, -4.5, outpath)
         with pytest.raises(TypeError):
-            crop(5, "10", True)
+            crop(5, "10", True, outpath)
         with pytest.raises(TypeError):
-            crop(np.random.randint(0,255,(18,19,3)).astype("uint8"), 10, 10)
+            crop(np.random.randint(0,255,(18,19,3)).astype("uint8"), 10, 10, outpath)
+        with pytest.raises(TypeError):
+            crop(img_path, 5, 5, 5)
 
     def test_crop_input_shape(self):
         '''
@@ -94,13 +98,13 @@ class Test_compress():
         '''
         Function to test that compressed image shape is the same
         '''
-        com_path = compress(img_path, 3)
+        com_path = compress(img_path, 3, outpath)
         assert imread(com_path).shape == imread(img_path).shape
 
-        com_path = compress(img_path, 1)
+        com_path = compress(img_path, 1, outpath)
         assert imread(com_path).shape == imread(img_path).shape
 
-        com_path = compress(img_path, 6)
+        com_path = compress(img_path, 6, outpath)
         assert imread(com_path).shape == imread(img_path).shape
 
     def test_compress_type(self):
@@ -109,11 +113,13 @@ class Test_compress():
         passed in for image or b
         '''
         with pytest.raises(TypeError):
-            compress(img_path, 6.5)
+            compress(img_path, 6.5, outpath)
         with pytest.raises(TypeError):
-            compress(imread(img_path), 2)
+            compress(imread(img_path), 2, outpath)
         with pytest.raises(TypeError):
-            compress(5, True)
+            compress(5, True, outpath)
+        with pytest.raises(TypeError):
+            compress(img_path, 3, 5)
 
     def test_compress_value(self):
         '''
@@ -121,15 +127,15 @@ class Test_compress():
         when invalid values are passed in for b
         '''
         with pytest.raises(ValueError):
-            compress(img_path, -1)
+            compress(img_path, -1, outpath)
         with pytest.raises(ValueError):
-            compress(img_path, 9)
+            compress(img_path, 9, outpath)
         with pytest.raises(ValueError):
-            compress(img_path, 0)
+            compress(img_path, 0, outpath)
         with pytest.raises(ValueError):
-            compress(img_path, 1000)
+            compress(img_path, 1000, outpath)
         with pytest.raises(ValueError):
-            compress(img_path, -1000)
+            compress(img_path, -1000, outpath)
 
     def test_compress_input_shape(self):
         '''
@@ -142,16 +148,16 @@ class Test_compress():
         Function to test that the size of the compressed image
         is correct
         '''
-        compressed_img = compress(img_path, 3)
+        compressed_img = compress(img_path, 3, outpath)
         assert image_size(compressed_img) < 7/8 * image_size(img_path)
         
-        compressed_img = compress(img_path, 1)
+        compressed_img = compress(img_path, 1, outpath)
         assert image_size(compressed_img) < 5/8 * image_size(img_path)
 
-        compressed_img = compress(img_path, 6)
+        compressed_img = compress(img_path, 6, outpath)
         assert image_size(compressed_img) <= 8/8 * image_size(img_path)
 
-        compressed_img = compress(img_path, 8)
+        compressed_img = compress(img_path, 8, outpath)
         assert image_size(compressed_img) <= image_size(img_path)
 
     def test_compress_already_compressed(self):
@@ -160,9 +166,9 @@ class Test_compress():
         images that cannot be compressed further are passed in
         '''
         with pytest.raises(Exception):
-            compress(small_img, 8)
+            compress(small_img, 8, outpath)
         with pytest.raises(Exception):
-            compress(small_img, 1)
+            compress(small_img, 1, outpath)
 
     def test_compress_smaller_b(self):
         '''
@@ -170,7 +176,7 @@ class Test_compress():
         needs to be chosen in order to compress the image
         '''
         with pytest.raises(Exception):
-            compress(big_img, 4)
+            compress(big_img, 4, outpath)
 
 class Test_image_size():
 
