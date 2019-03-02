@@ -2,24 +2,27 @@ import numpy as np
 import os
 from sklearn import cluster
 from skimage.io import imread, imsave
+from imageCompress.image_size import image_size
 
-def compress(img_path, b):
+
+def compression (img_path, b, out_path):
     """
     Compresses an image into a format with bits to
     represent each channel.
 
     Parameters:
     ----------
-    img_path : str (file path to the image)
-    b   : int
+    img_path: str (file path to a .png image)
+    b: int in [1, 8]
+    out_path: str (file path to the compressed png image)
 
     Returns:
     -------
     compressed_img : str (file path to the image with each channel
-                    compressed to b bits)
+                    compressed to b bits, same as out_path)
     """
 
-    if type(img_path) != str:
+    if type(img_path) != str or type(out_path) != str:
         raise TypeError("Image path not correct, make sure you are passing a string!")
 
     if type(b) != int:
@@ -32,7 +35,7 @@ def compress(img_path, b):
 
     H, W, C = img.shape
     print(img.shape)
-    model = cluster.KMeans(n_clusters=2**b)
+    model = cluster.KMeans(n_clusters = 2**b)
 
     img = img.reshape(H*W, C)
     model.fit(img)
@@ -48,9 +51,29 @@ def compress(img_path, b):
         for j in range(W):
             img[i, j, :] = colours[quantized_img[i, j], :]
 
-    path = os.path.dirname(os.path.abspath(img_path))
-    compressed_img_path = os.path.join(path, "compressed_img.png")
-    imsave(compressed_img_path, img)
+    imsave(out_path, img)
 
-    print("The compressed image is saved at the path:", compressed_img_path)
-    return compressed_img_path
+    return out_path
+
+def compress(img_path, b, out_path):
+
+    min_size_img = compression(img_path, 1, os.path.join((os.path.dirname(os.path.abspath(img_path))), "1.png"))
+    desired_size_img = compression(img_path, b, os.path.join((os.path.dirname(os.path.abspath(img_path))), "2.png"))
+    
+    if image_size(min_size_img) > image_size(img_path):  
+        os.remove(min_size_img)
+        os.remove(desired_size_img)
+        raise Exception ("The image is already compressed")
+        
+
+    elif image_size(desired_size_img) > image_size(img_path):
+        os.remove(min_size_img)
+        os.remove(desired_size_img)
+        raise Exception ("Choose a smaller b to compress the image.")
+        
+
+    else:
+        os.remove(min_size_img)
+        os.remove(desired_size_img)
+        return compression(img_path, b, out_path)
+
