@@ -9,7 +9,7 @@ Two ways to compress your images!
 
 ## Project Summary
 
-This Python package specializes in reducing the size of images. It contains three main functions :`crop()`, `compress()` and `image_size()`. The `crop()` function reduces the size of an image by reducing the height and width of the image to the size specified by the user. The `compress()` function reduces the file size of an image by reducing the number of bits used in each colour channel of the image. The image_size function calculates the size of the image in bytes. The size returned can then used to check if the `compress()` function did its job correctly. The package could be used by people to reduce the size of images (dimensions or file size), which could then be uploaded to social media platforms or other websites and applications that have limits on file sizes.
+This Python package specializes in reducing the size of images. It contains three main functions :`crop()`, `compress()` and `image_size()`. The `crop()` function reduces the size of an image by reducing the height and width of the image to the size specified by the user. The `compress()` function reduces the file size of an image by reducing the number of bits used in each colour channel of the image. The image_size function calculates the size of the image in bytes. The size returned can then used to check if the `compress()` function did its job correctly. The package could be used by people to reduce the size of images (dimensions or file size), which could then be uploaded to social media platforms or other websites and applications that have limits on image size.
 
 ## Functions
 
@@ -77,7 +77,7 @@ imageCompress.image_size("../data/bigger_test.png")
 
 To crop the image:  
 ```
-imageCompress.image_size("../data/bigger_test.png", 175, 200, "../data/crop_img.png")
+imageCompress.crop("../data/bigger_test.png", 175, 200, "../data/crop_img.png")
 ```
 
 > This returns the absolute file path to the cropped image, as specified in the `out_path` argument of the function. The cropped image is shown below. 
