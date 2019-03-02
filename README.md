@@ -51,7 +51,7 @@ To install this package, use the following command:
 |Get the size of `image.png`|  `imageCompress.image_size("..//image.png")`|
 
 ## Branch Coverage
-<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/master/docs/branch_coverage.png" width = "100">
+<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/master/docs/branch_coverage.png" width = "500">
 
 ## Related Packages
 There already are packages for image processing in R and Python:
