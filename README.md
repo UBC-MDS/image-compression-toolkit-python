@@ -15,30 +15,38 @@ This Python package specializes in reducing the size of images. It contains thre
 
 - `crop(img_path, H, W, out_path)`
   - Description:
-    This function will reduce the image to the specified size removing rows and columns of pixels from the borders.
-  - Input:
-    - img_path (string, file path to a `png` image)
-    - H (integer, desired height of the cropped image)
-    - W (integer, desired width of the cropped image)
-    - out_path(string, file path where to save the cropped `png` image)
+    This function will reduce the image to the specified size by removing rows and columns of pixels from the borders.
+  - Inputs:  
+
+|Parameter |Type |Description |
+|----------|-----|------------| 
+|`img_path`|`string`| File path to a `png` image|
+|`H`|`int`| Desired height of the cropped image |
+|`W`|`int`| Desired width of the cropped image|
+|`out_path`|``string`| File path to where to save the cropped `png` image |  
+
   - Output:
-    - string, file path to cropped image (`png` image with size `H x W`)
+    - `string`, file path to cropped image (`png` image with size `H x W`)
+
 - `compress(image, b, out_path)`
   - Description:
     This function compresses the image by reducing the number of bits for each channel based on user input.
-  - Input:
-    - img_path (string, file path to a `png` image)
-    - b (integer, range [1, 8] (number of bits used for each channel in the compressed image))
-    - out_path (string, file path where to save the compressed image)
+  - Inputs:
+  |Parameter |Type |Description |
+|----------|-----|------------| 
+|`img_path`|`string`| File path to a `png` image|
+|`b`|`int`| An integer between 1 and 8; number of bits used for each channel in the compressed image |
+|`out_path`|``string`| File path to where to save the compressed `png` image |
   - Output:
-    - string, file path to compressed image (compressed `png` image )
+    - `string`, file path to the compressed `png` image 
+
 - `image_size(image)`
   - Description:
     Calculates and returns the size of an image in bytes.
   - Input:
-    - img_path (string, file path to a `png` image)
+    - `string`, `image`,  file path to a `png` image
   - Output:
-    - size (integer, size of the image in bytes)  
+    - `int`, size of the image in bytes 
     
 ## Installation
 To install this package, use the following command:  
@@ -73,6 +81,7 @@ imageCompress.image_size("../data/bigger_test.png", 175, 200, "../data/crop_img.
 
 This returns the absolute file path to the cropped image, as specified in the `out_path` argument of the function.
 The cropped image is shown below. 
+
 <img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/data/crop_img.png" >
 
 To compress the image:
@@ -80,7 +89,8 @@ To compress the image:
 imageCompress.compress("..data/bigger_test.png", 2, "../data/compressed_img.png")
 ```
 
-This returns the absolute file path to the compressed image. The compressed image is shown below. 
+This returns the absolute file path to the compressed image. The compressed image is shown below.   
+
 <img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/data/compressed_img.png" >
 
 
