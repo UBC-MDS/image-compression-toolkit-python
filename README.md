@@ -48,11 +48,43 @@ To install this package, use the following command:
 ## Usage 
 |Task    |  In a Script (after, `import imageCompress`)   |
 |---------|---------------------|
-|Crop `image.png` to size 10 X 15  |  `imageCompress.crop("..//image.png", H = 10, W = 15)`| 
-|Compress an `image.png` to 5 bits per channel |  `imageCompress.compress("..//image.png", b = 5)` |
+|Crop `image.png` to size 10 X 15  |  `imageCompress.crop("../image.png", H = 10, W = 15, "..//cropped_image.png")`| 
+|Compress an `image.png` to 5 bits per channel |  `imageCompress.compress("..//image.png", b = 5, "..//compressed_image.png")` |
 |Get the size of `image.png`|  `imageCompress.image_size("..//image.png")`|
 
 ## Examples
+The following examples use the `bigger_test.png` image from the data folder, displayed below. 
+<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/docs/bigger_test.png" >
+
+To get the size of the image:
+```
+import imageCompress
+imageCompress.image_size("../data/bigger_test.png")
+```
+This returns the size of the image in bytes.
+```
+45534
+```
+
+To crop the image:  
+```
+imageCompress.image_size("../data/bigger_test.png", 175, 200, "../data/crop_img.png")
+```
+
+This returns the absolute file path to the cropped image, as specified in the `out_path` argument of the function.
+The cropped image is shown below. 
+<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/docs/crop_img.png" >
+
+To compress the image:
+```
+imageCompress.compress("..data/bigger_test.png", 2, "../data/compressed_img.png")
+```
+
+This returns the absolute file path to the compressed image. The compressed image is shown below. 
+<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/docs/compressed_img.png" >
+
+
+
 
 ## Test Results
 
