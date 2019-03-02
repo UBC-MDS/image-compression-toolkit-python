@@ -73,7 +73,7 @@ imageCompress.image_size("../data/bigger_test.png", 175, 200, "../data/crop_img.
 
 This returns the absolute file path to the cropped image, as specified in the `out_path` argument of the function.
 The cropped image is shown below. 
-<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/docs/crop_img.png" >
+<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/data/crop_img.png" >
 
 To compress the image:
 ```
@@ -81,7 +81,7 @@ imageCompress.compress("..data/bigger_test.png", 2, "../data/compressed_img.png"
 ```
 
 This returns the absolute file path to the compressed image. The compressed image is shown below. 
-<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/docs/compressed_img.png" >
+<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/data/compressed_img.png" >
 
 
 
