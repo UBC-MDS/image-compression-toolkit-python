@@ -50,6 +50,9 @@ To install this package, use the following command:
 |Compress an `image.png` to 5 bits per channel |  `imageCompress.compress("..//image.png", b = 5)` |
 |Get the size of `image.png`|  `imageCompress.image_size("..//image.png")`|
 
+## Branch Coverage
+![](https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/master/docs/branch_coverage.png)
+
 ## Related Packages
 There already are packages for image processing in R and Python:
   - [The magick package in R](https://cran.r-project.org/web/packages/magick/vignettes/intro.html)
