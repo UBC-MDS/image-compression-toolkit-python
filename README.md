@@ -37,7 +37,7 @@ This Python package specializes in reducing the size of images. It contains thre
 |----------|-----|------------| 
 |`img_path`|`string`| File path to a `png` image|
 |`b`|`int`| An integer between 1 and 8; number of bits used for each channel in the compressed image |
-|`out_path`|``string`| File path to where to save the compressed `png` image |
+|`out_path`|`string`| File path to where to save the compressed `png` image |
   - Output:
     - `string`, file path to the compressed `png` image 
 
@@ -45,7 +45,7 @@ This Python package specializes in reducing the size of images. It contains thre
   - Description:
     Calculates and returns the size of an image in bytes.
   - Input:
-    - `string`, `image`,  file path to a `png` image
+    - `string`, file path to a `png` image
   - Output:
     - `int`, size of the image in bytes 
     
