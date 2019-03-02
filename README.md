@@ -13,21 +13,23 @@ This Python package specializes in reducing the size of images. It contains thre
 
 ## Functions
 
-- `crop(img_path, H, W)`
+- `crop(img_path, H, W, out_path)`
   - Description:
     This function will reduce the image to the specified size removing rows and columns of pixels from the borders.
   - Input:
     - img_path (string, file path to a `png` image)
     - H (integer, desired height of the cropped image)
     - W (integer, desired width of the cropped image)
+    - out_path(string, file path where to save the cropped `png` image)
   - Output:
     - string, file path to cropped image (`png` image with size `H x W`)
-- `compress(image, b)`
+- `compress(image, b, out_path)`
   - Description:
     This function compresses the image by reducing the number of bits for each channel based on user input.
   - Input:
     - img_path (string, file path to a `png` image)
     - b (integer, range [1, 8] (number of bits used for each channel in the compressed image))
+    - out_path (string, file path where to save the compressed image)
   - Output:
     - string, file path to compressed image (compressed `png` image )
 - `image_size(image)`
