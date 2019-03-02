@@ -54,7 +54,7 @@ To install this package, use the following command:
 
 ## Examples
 The following examples use the `bigger_test.png` image from the data folder, displayed below. 
-<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/docs/bigger_test.png" >
+<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/data/bigger_test.png" >
 
 To get the size of the image:
 ```
