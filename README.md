@@ -70,7 +70,7 @@ To get the size of the image:
 import imageCompress
 imageCompress.image_size("../data/bigger_test.png")
 ```
-This returns the size of the image in bytes.
+> This returns the size of the image in bytes.
 ```
 45534
 ```
@@ -80,8 +80,7 @@ To crop the image:
 imageCompress.image_size("../data/bigger_test.png", 175, 200, "../data/crop_img.png")
 ```
 
-This returns the absolute file path to the cropped image, as specified in the `out_path` argument of the function.
-The cropped image is shown below. 
+> This returns the absolute file path to the cropped image, as specified in the `out_path` argument of the function. The cropped image is shown below. 
 
 <img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/data/crop_img.png" >
 
@@ -90,7 +89,7 @@ To compress the image:
 imageCompress.compress("..data/bigger_test.png", 2, "../data/compressed_img.png")
 ```
 
-This returns the absolute file path to the compressed image. The compressed image is shown below.   
+> This returns the absolute file path to the compressed image. The compressed image is shown below.   
 
 <img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/data/compressed_img.png" >
 
