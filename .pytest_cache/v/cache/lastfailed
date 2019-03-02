@@ -1,7 +1,0 @@
-{
-  "test.py::Test_crop": true,
-  "test.py::Test_crop::()": true,
-  "test.py::Test_crop::()::test_crop_shape": true,
-  "test.py::Test_crop::()::test_crop_type": true,
-  "test.py::Test_crop::()::test_crop_value": true
-}

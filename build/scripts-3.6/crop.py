@@ -3,22 +3,18 @@ import numpy as np
 import os
 from skimage.io import imread, imsave
 
-def crop(img_path, H, W, out_path):
+def crop(img_path, H, W):
     """
-    Function to crop and save an image.
-
+    Function to crop images
     Parameters:
     ----------
     img_path - String , file path of the image .
     H        - Integer, the desired height of the cropped image
     W        - Integer, the desired width of the cropped image
 
-    out_path - String, file path to the cropped image
-    
     Returns:
     -------
-    String, file path to the cropped image (same as out_path)
-    
+    cropped image path and saves the image .
 
     Example:
     -------
@@ -28,7 +24,7 @@ def crop(img_path, H, W, out_path):
     #---------------------------------------Exception Handling----------------------------------------------------#
     # Exception handling for input validation like Type error, invalid values , unrealistic desired dimension     #
     #-------------------------------------------------------------------------------------------------------------#
-    if type(img_path) != str or type(out_path) != str:
+    if type(img_path) != str:
         raise TypeError("Image path not correct, make sure you are passing a string!")
     if type(H) != int or type(W) !=int:
         raise TypeError('Invalid Type')
@@ -62,10 +58,11 @@ def crop(img_path, H, W, out_path):
 
     img = image[start_row:end_row,start_col:end_col,:]     # Cropping image from all sides.
     #-----------------------------------------Saving Cropped Image-----------------------------------------------#
-    # Saving the image                                                         #
+    # Saving the image and building the path for output                                                          #
     #------------------------------------------------------------------------------------------------------------#
+    path = os.path.dirname(os.path.abspath(img_path))
+    crop_img_path = os.path.join(path, "crop_img.png")
+    imsave(crop_img_path, img)
 
-    imsave(out_path, img)
-
-    return out_path
-
+    print("The cropped image is saved at the path:", crop_img_path)
+    return crop_img_path

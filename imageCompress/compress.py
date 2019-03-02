@@ -92,3 +92,4 @@ def compress(img_path, b, out_path):
         os.remove(min_size_img)
         os.remove(desired_size_img)
         return compression(img_path, b, out_path)
+
