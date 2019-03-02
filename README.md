@@ -31,8 +31,9 @@ This Python package specializes in reducing the size of images. It contains thre
 - `compress(image, b, out_path)`
   - Description:
     This function compresses the image by reducing the number of bits for each channel based on user input.
-  - Inputs:
-  |Parameter |Type |Description |
+  - Inputs:  
+
+|Parameter |Type |Description |
 |----------|-----|------------| 
 |`img_path`|`string`| File path to a `png` image|
 |`b`|`int`| An integer between 1 and 8; number of bits used for each channel in the compressed image |
