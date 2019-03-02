@@ -22,15 +22,6 @@ def compression (img_path, b, out_path):
                     compressed to b bits, same as out_path)
     """
 
-    if type(img_path) != str or type(out_path) != str:
-        raise TypeError("Image path not correct, make sure you are passing a string!")
-
-    if type(b) != int:
-        raise TypeError("b should be a positive integer <= 8!")
-
-    if b <= 0 or b > 8:
-        raise ValueError("b should be a positive integer <= 8!")
-
     img = imread(img_path)
 
     H, W, C = img.shape
@@ -57,6 +48,31 @@ def compression (img_path, b, out_path):
 
 def compress(img_path, b, out_path):
 
+    """
+    Compresses an image into a format with bits to
+    represent each channel.
+
+    Parameters:
+    ----------
+    img_path: str (file path to a .png image)
+    b: int in [1, 8]
+    out_path: str (file path to the compressed png image)
+
+    Returns:
+    -------
+    compressed_img : str (file path to the image with each channel
+                    compressed to b bits, same as out_path)
+    """
+    
+    if type(img_path) != str or type(out_path) != str:
+        raise TypeError("Image path not correct, make sure you are passing a string!")
+
+    if type(b) != int:
+        raise TypeError("b should be a positive integer <= 8!")
+
+    if b <= 0 or b > 8:
+        raise ValueError("b should be a positive integer <= 8!")
+    
     min_size_img = compression(img_path, 1, os.path.join((os.path.dirname(os.path.abspath(img_path))), "1.png"))
     desired_size_img = compression(img_path, b, os.path.join((os.path.dirname(os.path.abspath(img_path))), "2.png"))
     
