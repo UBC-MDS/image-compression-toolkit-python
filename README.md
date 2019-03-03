@@ -23,7 +23,7 @@ This Python package specializes in reducing the size of images. It contains thre
 |`img_path`|`string`| File path to a `png` image|
 |`H`|`int`| Desired height of the cropped image |
 |`W`|`int`| Desired width of the cropped image|
-|`out_path`|``string`| File path to where to save the cropped `png` image |  
+|`out_path`|`string`| File path to where to save the cropped `png` image |  
 
   - Output:
     - `string`, file path to cropped image (`png` image with size `H x W`)
