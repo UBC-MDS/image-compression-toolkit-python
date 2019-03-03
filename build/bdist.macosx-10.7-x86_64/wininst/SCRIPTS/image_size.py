@@ -20,5 +20,4 @@ def image_size(img_path):
 
     file_info = os.stat(img_path)
     size = file_info.st_size
-    print("The file size in bytes is:", size)
     return size
