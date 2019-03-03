@@ -108,7 +108,7 @@ imageCompress.compress("..data/bigger_test.png", 2, "../data/compressed_img.png"
 <img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/docs/test_output.png" >
 
 ## Branch Coverage
-<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/master/docs/branch_coverage.png" width = "555">
+<img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/docs/branch_coverage.png" width = "555">
 
 ## Related Packages
 There already are packages for image processing in R and Python:
