@@ -25,7 +25,6 @@ def compression (img_path, b, out_path):
     img = imread(img_path)
 
     H, W, C = img.shape
-    print(img.shape)
     model = cluster.KMeans(n_clusters = 2**b)
 
     img = img.reshape(H*W, C)
@@ -63,7 +62,7 @@ def compress(img_path, b, out_path):
     compressed_img : str (file path to the image with each channel
                     compressed to b bits, same as out_path)
     """
-    
+
     if type(img_path) != str or type(out_path) != str:
         raise TypeError("Image path not correct, make sure you are passing a string!")
 
@@ -72,24 +71,21 @@ def compress(img_path, b, out_path):
 
     if b <= 0 or b > 8:
         raise ValueError("b should be a positive integer <= 8!")
-    
+
     min_size_img = compression(img_path, 1, os.path.join((os.path.dirname(os.path.abspath(img_path))), "1.png"))
     desired_size_img = compression(img_path, b, os.path.join((os.path.dirname(os.path.abspath(img_path))), "2.png"))
-    
-    if image_size(min_size_img) > image_size(img_path):  
+
+    if image_size(min_size_img) > image_size(img_path):
         os.remove(min_size_img)
         os.remove(desired_size_img)
         raise Exception ("The image is already compressed")
-        
 
     elif image_size(desired_size_img) > image_size(img_path):
         os.remove(min_size_img)
         os.remove(desired_size_img)
         raise Exception ("Choose a smaller b to compress the image.")
-        
 
     else:
         os.remove(min_size_img)
         os.remove(desired_size_img)
         return compression(img_path, b, out_path)
-
