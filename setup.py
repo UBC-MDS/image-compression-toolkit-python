@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='imageCompress',
-    version='0.3dev',
+    version='1.0',
     packages=['imageCompress'],
     scripts=['imageCompress/compress.py', 'imageCompress/crop.py', 'imageCompress/image_size.py'],
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
