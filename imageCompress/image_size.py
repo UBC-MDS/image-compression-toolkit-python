@@ -1,6 +1,6 @@
 import os
 
-def image_size(img_path):
+def image_size(img_path: str) -> int:
     """
     Function to estimate the size of an image in bytes
 

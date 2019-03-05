@@ -3,7 +3,7 @@ import numpy as np
 import os
 from skimage.io import imread, imsave
 
-def crop(img_path, H, W, out_path):
+def crop(img_path: str, H: int, W: int, out_path: str) -> str:
     """
     Function to crop and save an image.
 
@@ -14,11 +14,11 @@ def crop(img_path, H, W, out_path):
     W        - Integer, the desired width of the cropped image
 
     out_path - String, file path to the cropped image
-    
+
     Returns:
     -------
     String, file path to the cropped image (same as out_path)
-    
+
 
     Example:
     -------
@@ -68,4 +68,3 @@ def crop(img_path, H, W, out_path):
     imsave(out_path, img)
 
     return out_path
-
