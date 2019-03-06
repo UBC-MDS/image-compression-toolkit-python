@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/UBC-MDS/image-compression-toolkit-python.svg?branch=master)](https://travis-ci.org/UBC-MDS/image-compression-toolkit-python)
 
 # Image Compression Toolkit - Python
-Two ways to compress your images!
+This package allows users to compress and crop their images to obtain smaller sized images and files.
 
 ## Contributors
 
