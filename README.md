@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/UBC-MDS/image-compression-toolkit-python.svg?branch=master)](https://travis-ci.org/UBC-MDS/image-compression-toolkit-python)
+
 # Image Compression Toolkit - Python
 Two ways to compress your images!
 
@@ -19,7 +21,7 @@ This Python package specializes in reducing the size of images. It contains thre
   - Inputs:  
 
 |Parameter |Type |Description |
-|----------|-----|------------| 
+|----------|-----|------------|
 |`img_path`|`string`| File path to a `png` image|
 |`H`|`int`| Desired height of the cropped image |
 |`W`|`int`| Desired width of the cropped image|
@@ -34,12 +36,12 @@ This Python package specializes in reducing the size of images. It contains thre
   - Inputs:  
 
 |Parameter |Type |Description |
-|----------|-----|------------| 
+|----------|-----|------------|
 |`img_path`|`string`| File path to a `png` image|
 |`b`|`int`| An integer between 1 and 8; number of bits used for each channel in the compressed image |
 |`out_path`|`string`| File path to where to save the compressed `png` image |
   - Output:
-    - `string`, file path to the compressed `png` image 
+    - `string`, file path to the compressed `png` image
 
 - `image_size(image)`
   - Description:
@@ -47,22 +49,22 @@ This Python package specializes in reducing the size of images. It contains thre
   - Input:
     - `string`, file path to a `png` image
   - Output:
-    - `int`, size of the image in bytes 
-    
+    - `int`, size of the image in bytes
+
 ## Installation
 To install this package, use the following command:  
 
 >`pip install git+https://github.com/UBC-MDS/image-compression-toolkit-python.git`
 
-## Usage 
+## Usage
 |Task    |  In a Script (after, `import imageCompress`)   |
 |---------|---------------------|
-|Crop `image.png` to size 10 X 15  |  `imageCompress.crop("../image.png", H = 10, W = 15, "..//cropped_image.png")`| 
+|Crop `image.png` to size 10 X 15  |  `imageCompress.crop("../image.png", H = 10, W = 15, "..//cropped_image.png")`|
 |Compress an `image.png` to 5 bits per channel |  `imageCompress.compress("..//image.png", b = 5, "..//compressed_image.png")` |
 |Get the size of `image.png`|  `imageCompress.image_size("..//image.png")`|
 
 ## Examples
-The following examples use the `bigger_test.png` image from the data folder, displayed below. 
+The following examples use the `bigger_test.png` image from the data folder, displayed below.
 <img src = "https://raw.githubusercontent.com/UBC-MDS/image-compression-toolkit-python/update_tests/data/bigger_test.png" >
 
 To get the size of the image:
@@ -80,7 +82,7 @@ To crop the image:
 imageCompress.crop("../data/bigger_test.png", 175, 200, "../data/cropped_img.png")
 ```
 
-> This returns the absolute file path to the cropped image, as specified in the `out_path` argument of the function. The cropped image is shown below. 
+> This returns the absolute file path to the cropped image, as specified in the `out_path` argument of the function. The cropped image is shown below.
 ```
 ..data/cropped_img.png
 ```
