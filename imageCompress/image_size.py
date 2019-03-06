@@ -16,7 +16,7 @@ def image_size(img_path: str) -> int:
     image_size(image_path)
     """
     if type(img_path) != str:
-        raise TypeError("Image path invalid, pass a correct path (string)!")
+        raise TypeError("Image path is invalid, pass a valid PNG input image path (should be in string format)!")
 
     file_info = os.stat(img_path)
     size = file_info.st_size
