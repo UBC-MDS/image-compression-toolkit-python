@@ -5,25 +5,25 @@ from skimage.io import imread, imsave
 
 def crop(img_path: str, H: int, W: int, out_path: str) -> str:
     """
-    Function to crop and save an image.
+    Function to crop and save an image. THe function saves the
+    image and returns the path to the cropped output image
+    specified by the out_path.
 
     Parameters:
     ----------
     img_path - String , file path of the image .
     H        - Integer, the desired height of the cropped image
     W        - Integer, the desired width of the cropped image
-
     out_path - String, file path to the cropped image
 
     Returns:
     -------
     String, file path to the cropped image (same as out_path)
 
-
-    Example:
+    Examples:
     -------
-    crop("data/sample.png", 10, 15)
-    saves the image and returns the path of the cropped image.
+    >>> imageCompress.crop("../image.png", H = 10, W = 15, "..//cropped_image.png")
+    >>> "..//cropped_image.png"
     """
     #---------------------------------------Exception Handling----------------------------------------------------#
     # Exception handling for input validation like Type error, invalid values , unrealistic desired dimension     #

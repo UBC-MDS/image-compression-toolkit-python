@@ -49,7 +49,8 @@ def compress(img_path: str, b: int, out_path: str) -> str:
 
     """
     Compresses an image into a format with bits to
-    represent each channel.
+    represent each channel. Saves the image and returns
+    the path to compressed output image specified by the out_path.
 
     Parameters:
     ----------
@@ -61,6 +62,11 @@ def compress(img_path: str, b: int, out_path: str) -> str:
     -------
     compressed_img : str (file path to the image with each channel
                     compressed to b bits, same as out_path)
+
+    Examples:
+    -------
+    >>> imageCompress.compress("..//image.png", b = 5, "..//compressed_image.png")
+    >>> "..//compressed_image.png"
     """
 
     if type(img_path) != str:
