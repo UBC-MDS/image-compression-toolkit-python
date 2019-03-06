@@ -28,10 +28,14 @@ def crop(img_path: str, H: int, W: int, out_path: str) -> str:
     #---------------------------------------Exception Handling----------------------------------------------------#
     # Exception handling for input validation like Type error, invalid values , unrealistic desired dimension     #
     #-------------------------------------------------------------------------------------------------------------#
-    if type(img_path) != str or type(out_path) != str:
-        raise TypeError("Image path not correct, make sure you are passing a string!")
-    if type(H) != int or type(W) !=int:
-        raise TypeError('Invalid Type')
+    if type(img_path) != str:
+        raise TypeError("Input image path type not correct, make sure you are passing a string!")
+    if type(out_path) != str:
+        raise TypeError("Output path type not correct, make sure you are passing a string!")
+    if type(H) != int:
+        raise TypeError('Invalid Type: make sure you are passing H as an integer!')
+    if type(W) != int:
+        raise TypeError('Invalid Type: make sure you are passing W as an integer!')
     elif H<0 or W <0 or H ==0 or W ==0:
         raise ValueError('Desired dimension should be positive')
     elif H >= imread(img_path).shape[0] + 1 or W >= imread(img_path).shape[1] + 1:
