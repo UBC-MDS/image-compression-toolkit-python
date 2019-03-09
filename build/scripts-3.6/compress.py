@@ -5,7 +5,7 @@ from skimage.io import imread, imsave
 from imageCompress.image_size import image_size
 
 
-def compression (img_path, b, out_path):
+def compression (img_path: str, b: int, out_path: str) -> str:
     """
     Compresses an image into a format with bits to
     represent each channel.
@@ -45,11 +45,12 @@ def compression (img_path, b, out_path):
 
     return out_path
 
-def compress(img_path, b, out_path):
+def compress(img_path: str, b: int, out_path: str) -> str:
 
     """
     Compresses an image into a format with bits to
-    represent each channel.
+    represent each channel. Saves the image and returns
+    the path to compressed output image specified by the out_path.
 
     Parameters:
     ----------
@@ -61,15 +62,22 @@ def compress(img_path, b, out_path):
     -------
     compressed_img : str (file path to the image with each channel
                     compressed to b bits, same as out_path)
+
+    Examples:
+    -------
+    >>> imageCompress.compress("..//image.png", b = 5, "..//compressed_image.png")
+    >>> "..//compressed_image.png"
     """
 
-    if type(img_path) != str or type(out_path) != str:
-        raise TypeError("Image path not correct, make sure you are passing a string!")
-
+    if type(img_path) != str:
+        raise TypeError("Input image path type not correct, make sure you are passing a string!")
+    if type(out_path) != str:
+        raise TypeError("Output path type not correct, make sure you are passing a string!")
     if type(b) != int:
         raise TypeError("b should be a positive integer <= 8!")
-
-    if b <= 0 or b > 8:
+    if b <= 0:
+        raise ValueError("b should be a positive integer greater than 0 and less than 9!")
+    if b > 8:
         raise ValueError("b should be a positive integer <= 8!")
 
     min_size_img = compression(img_path, 1, os.path.join((os.path.dirname(os.path.abspath(img_path))), "1.png"))
